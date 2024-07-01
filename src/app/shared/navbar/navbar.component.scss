@@ -1,6 +1,6 @@
 .navbar {
-  background-color: #FFFFFF;
-  color: #CCC;
+  background-color: #CCC;
+  color: white;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -15,4 +15,10 @@
 .navbar a:hover {
   background-color: #ddd;
   cursor: pointer;
+}
+
+.routes-container {
+  position: relative;
+  margin: auto;
+  left: -75px;
 }
