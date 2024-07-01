@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-weight: normal;
+  font-style: normal;
+  font-family: inherit;
+  vertical-align: baseline;
+  font-family: Open Sans, sans-serif;
+}
+
+/* Reset list styles (remove default bullets, etc.) */
+ol,
+ul {
+  list-style: none;
+}
+
+/* Reset anchor link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
