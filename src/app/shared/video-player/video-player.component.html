@@ -1,0 +1,21 @@
+<figure class="video-player">
+  <video #videoElement controls preload="metadata">
+    <source
+      [src]="selectedSource.src"
+      type="video/mp4" />
+    <p>Your browser does not support the video element.</p>
+    @if (subtitlesUrls.length > 0) {
+      @for(subtitle of subtitlesUrls; track subtitle.srclang) {
+        <track kind="subtitles" [src]="subtitle.src" [srclang]="subtitle.srclang" [label]="subtitle.label">
+      }
+    }
+  </video>
+  <div class="quality-controls">
+    <label for="quality-select">Quality:</label>
+    <select id="quality-select" (change)="changeQuality($event)">
+      @for (source of videoSources; track source) {
+        <option [value]="source.label">{{ source.label }}</option>
+      }
+    </select>
+  </div>
+</figure>
