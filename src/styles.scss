@@ -1,4 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@use "stream-chat-angular/src/assets/styles/v2/scss/variables" with ( $assetsPath: "../node_modules/stream-chat-angular/src/assets/styles/v2/assets");
+@import "stream-chat-angular/src/assets/styles/v2/scss/index.scss";
+
+html, body {
+  height: 100%;
+}
+
+body {
+  height: calc(100dvh - 76px);
+}
+
+#excuela-chat {
+  display: flex;
+  height: 100%;
+
+  stream-channel-list {
+    width: 30%;
+  }
+
+  stream-channel {
+    width: 100%;
+  }
+
+  stream-thread {
+    width: 45%;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -31,3 +58,4 @@ a {
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+

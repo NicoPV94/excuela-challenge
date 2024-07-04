@@ -22,7 +22,9 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    //Se añade la siguiente propiedad ya que stream-chat hace uso de ella
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
