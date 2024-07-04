@@ -16,8 +16,8 @@ export class VideoPlayerPageComponent {
   ];
 
   subtitles = [
-    {label: 'English', src: 'assets/video/Subtitles-[English].vtt', srclang: 'en'},
-    {label: 'Español', src: 'assets/video/Subtitles-[Spanish].vtt', srclang: 'es'}
+    {label: 'English', src: 'assets/video/Subtitles-[English].vtt', srclang: 'en', default: false},
+    {label: 'Español', src: 'assets/video/Subtitles-[Spanish].vtt', srclang: 'es', default: false}
   ];
 
 }

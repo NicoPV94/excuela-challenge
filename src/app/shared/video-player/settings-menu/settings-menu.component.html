@@ -1,0 +1,13 @@
+<div #settingsMenu class="settings-menu flex-column align-items-center" [ngStyle]="{'display': menuOpen ? 'flex' : 'none'}">
+  @if(title !== '') {
+    <span class="menu-title px-2 py-1">{{title}}</span>
+  }
+  <ul class="p-0 m-0 w-100 text-center">
+    @for(option of options; track option.label) {
+      <li class="px-4 py-2" [ngClass]="{'active': selectedOption === option}" (click)="onOptionSelected(option)">{{ option.label }}</li>
+    }
+    @if(cancelButton) {
+      <li class="px-4 py-2" (click)="onCancelOption()">{{ cancelButtonLabel }}</li>
+    }
+  </ul>
+</div>
