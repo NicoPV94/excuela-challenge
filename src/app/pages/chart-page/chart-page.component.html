@@ -1,1 +1,21 @@
-<p>chart-page works!</p>
+<div class="chart-container mx-auto mt-5" width="500" height="500">
+  <form [formGroup]="chartTypeForm">
+    <div class="mb-3 form-group">
+      <label for="selectedChartType">Tipo de Gráfico:</label>
+      <select id="selectedChartType" formControlName="selectedChartType" class="form-select">
+        <option value="bar">Barra</option>
+        <option value="line">Línea</option>
+        <option value="pie">Circular</option>
+      </select>
+    </div>
+    <!-- <div class="mb-3 form-group">
+      <label for="selectedChartType">Minutos >=:</label>
+      <select formControlName="selectedChartType" class="form-select">
+        <option value="bar">Bar Chart</option>
+        <option value="line">Line Chart</option>
+        <option value="pie">Pie Chart</option>
+      </select>
+    </div> -->
+  </form>
+  <app-chart [chartType]="chartType" [chartData]="sampleChartData"></app-chart>
+</div>
