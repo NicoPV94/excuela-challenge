@@ -4,7 +4,7 @@ export interface ChartData {
     data: VideoData[];
   }[];
   pie: {
-    data: number[];
+    data: PieChartData[];
     label: string;
   }[];
   line: {
@@ -18,6 +18,11 @@ export interface VideoData {
   category: string;
   videoMinutes: number;
   id: number;
+}
+
+export interface PieChartData {
+  label: string;
+  value: number;
 }
 
 export interface LineChartData {

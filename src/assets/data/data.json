@@ -135,20 +135,11 @@
   "pie": [
     {
       "data": [
-        30,
-        55,
-        15
+        {"label": "Usuarios Gratuitos" ,"value": 30},
+        {"label": "Usuarios de Paga" ,"value": 55},
+        {"label": "Usuarios en Prueba" ,"value": 15}
       ],
       "label": "Categorías de Usuario"
-    },
-    {
-      "data": [
-        40,
-        30,
-        20,
-        10
-      ],
-      "label": "Interacción de Usuario"
     }
   ],
   "line": [

@@ -4,6 +4,8 @@ import { ChartComponent } from '../../components/chart/chart.component';
 import { ChartConfiguration, ChartType, ChartOptions } from 'chart.js';
 import { Subscription } from 'rxjs';
 import { ColorService } from '../../shared/services/color.service';
+import { Store, select } from '@ngrx/store';
+import { selectDataState } from '../../store/data.selectors';
 
 const DATA = [
   { "name": "Angular", "categoy": "web", "value": 290, "id": 1 },
@@ -56,44 +58,75 @@ export class ChartPageComponent implements OnInit, OnDestroy {
   chartType: ChartType = 'bar';
   chartTypeForm: FormGroup;
   borderColors: string[] = [];
-  sampleChartData: ChartConfiguration['data'] = {labels: [], datasets: []};
+  //sampleChartData: ChartConfiguration['data'] = {labels: [], datasets: []};
+  chartsData: {bar: ChartConfiguration['data'], pie: ChartConfiguration['data'], line: ChartConfiguration['data']} = {
+    bar: {labels: [], datasets: []},
+    pie: {labels: [], datasets: []},
+    line: {labels: [], datasets: []}
+  };
+  chartData: ChartConfiguration['data'] = {labels: [], datasets: []};
   subs: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder, private colorService: ColorService) {
+  constructor(private fb: FormBuilder, private colorService: ColorService, private store: Store) {
     this.chartTypeForm = this.fb.group({
       selectedChartType: ['bar', Validators.required]
     });
   }
 
   ngOnInit(): void {
-    this.sampleChartData = {
-      labels: DATA.map((e) => e.name),
-      datasets: [
-        {
-          label: 'Total de minutos vistos',
-          data: DATA.map((e) => e.value),
-          backgroundColor: this.colorService.getRandomColors(DATA.length, 0.4),
-          borderColor: this.colorService.getBorderColors(),
-          borderWidth: 1,
-        },
-      ]
-    }
+    // this.sampleChartData = {
+    //   labels: DATA.map((e) => e.name),
+    //   datasets: [
+    //     {
+    //       label: 'Total de minutos vistos',
+    //       data: DATA.map((e) => e.value),
+    //       backgroundColor: this.colorService.getRandomColors(DATA.length, 0.4),
+    //       borderColor: this.colorService.getBorderColors(),
+    //       borderWidth: 1,
+    //     },
+    //   ]
+    // }
+    const data$ = this.store.pipe(select(selectDataState));
+    this.subs.add(data$.subscribe({next: (data) => {
+      this.chartsData = JSON.parse(JSON.stringify(data.data));
+      if (!this.chartsData) return;
+      this.setChartData();
+    }}));
+    // console.log(this.chartsData);
+    //this.chartData = this.chartsData?[this.chartType]
+
     this.subs.add(this.chartTypeForm.get('selectedChartType')?.valueChanges.subscribe({
       next: (value) => {
         this.chartType = value;
-        this.sampleChartData = {
-          labels: DATA.map((e) => e.name),
-          datasets: [
-            {
-              label: 'Total de minutos vistos',
-              data: DATA.map((e) => e.value),
-              backgroundColor: this.colorService.getRandomColors(DATA.length, 0.4),
-              borderWidth: 1,
-            },
-          ]
-        }
+        this.setChartData();
+        // this.sampleChartData = {
+        //   labels: DATA.map((e) => e.name),
+        //   datasets: [
+        //     {
+        //       label: 'Total de minutos vistos',
+        //       data: DATA.map((e) => e.value),
+        //       backgroundColor: this.colorService.getRandomColors(DATA.length, 0.4),
+        //       borderWidth: 1,
+        //     },
+        //   ]
+        // }
       }
     }));
+  }
+
+  setChartData(): void {
+    switch(this.chartType) {
+      case 'bar':
+        this.chartData = this.chartsData.bar;
+        break;
+      case 'pie':
+        console.log(this.chartsData.pie);
+        this.chartData =this.chartsData.pie;
+        break;
+      case 'line':
+        this.chartData = this.chartsData.line;
+        break;
+    }
   }
 
   ngOnDestroy(): void {

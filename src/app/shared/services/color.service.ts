@@ -8,6 +8,15 @@ export class ColorService {
   constructor() { }
   private borderColors: string [] = [];
 
+  getRandomColor(): string {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
   getRandomColors(numberOfColors: number, opacity: number = 1): string[] {
     const colorsArray = [];
     for (let i = 0; i < numberOfColors; i++) {
