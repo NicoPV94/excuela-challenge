@@ -1,5 +1,5 @@
 @if(videoTitle) {
-  <h2 class="video-title">{{videoTitle}}</h2>
+  <h3 class="video-title">{{videoTitle}}</h3>
 }
 <div #videoContainer class="video-container" [ngClass]="{'paused': videoElement?.paused}" data-volume-level="high">
   <img class="thumbnail-img" [src]="thumbnailImgSrc">

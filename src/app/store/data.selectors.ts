@@ -1,5 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { DataState } from './data.state'; // Import your data state interface
+import { DataState } from './data.state';
+
+//Crear selectores para sacar la data del store.
 
 export const selectDataFeature = createFeatureSelector<DataState>('data');
 

@@ -5,11 +5,21 @@ import { of } from 'rxjs';
 import * as DataActions from './data.actions';
 import { LocalDataService } from '../shared/services/localData.service';
 import { ColorService } from '../shared/services/color.service';
-import { ChartConfiguration, ChartType, ChartOptions } from 'chart.js';
+import { ChartConfiguration } from 'chart.js';
 
 @Injectable()
 export class DataEffects {
 
+  constructor(
+    private actions$: Actions,
+    private localDataService: LocalDataService,
+    private colorService: ColorService
+  ) { }
+
+  //Definir efecto disparado por la acción de cargar data, aquí se utiliza un servicio generado para manejar
+  //el request en el que se carga la data del archivo JSON, llamado LocalDataService. Una vez cargada la data
+  //exitosamente, se formatea a la estructura necesitada por ng2-charts y se guarda en el store. En caso de error,
+  //se dispara la acción de manejo de errores.
   loadData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DataActions.loadData),
@@ -77,10 +87,4 @@ export class DataEffects {
       )
     )
   );
-
-  constructor(
-    private actions$: Actions,
-    private localDataService: LocalDataService,
-    private colorService: ColorService
-  ) { }
 }

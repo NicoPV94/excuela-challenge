@@ -10,28 +10,9 @@ import { ChartConfiguration, ChartType, ChartOptions } from 'chart.js';
   imports: [BaseChartDirective],
 })
 export class ChartComponent {
+  //Inputs y propiedades necesarias para la renderización del gráfico.
   @Input() chartType: ChartType = 'bar';
   @Input() chartData: ChartConfiguration['data'] = {labels: [], datasets: []};
   chartOptions: ChartOptions = {};
   chartLegend = true;
-
-  ngOnChanges(): void {
-    this.updateChartOptions();
-  }
-
-  private updateChartOptions() {
-    switch (this.chartType) {
-      case 'bar':
-        this.chartOptions = {
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-          responsive: true,
-          maintainAspectRatio: true
-        };
-        break;
-    }
-  }
 }

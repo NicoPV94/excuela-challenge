@@ -1,8 +1,25 @@
-<nav class="navbar py-4 px-4">
-  <img src="assets/images/excuela-logo.png" width="150px" alt="Logo">
-  <div class="routes-container">
-    <a routerLink="/">Gráficos</a>
-    <a routerLink="/support">Soporte</a>
-    <a routerLink="/video-player">Reproductor de Video</a>
+<!-- Utilizar bootstrap para crear una navbar responsive, también utilizando routerLink y routerLinkActive para manipular rutas. -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">
+    <img src="assets/images/excuela-logo.png" width="150px" alt="Logo">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto routes-container">
+      <li class="nav-item active">
+        <a class="nav-link" routerLinkActive="active-route" routerLink="/" [routerLinkActiveOptions]="{ exact: true }">Gráficos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active-route" routerLink="/support">Soporte</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active-route" routerLink="/video-player">Reproductor de Video</a>
+      </li>
+    </ul>
   </div>
 </nav>

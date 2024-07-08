@@ -1,9 +1,10 @@
 .navbar {
-  background-color: #CCC;
-  color: white;
+  background-color: white;
+  color: #677282;
   padding: 10px;
-  display: flex;
+  //display: flex;
   align-items: center;
+  border-bottom: solid 1px #CCC;
 }
 
 .navbar a {
@@ -13,7 +14,6 @@
 }
 
 .navbar a:hover {
-  background-color: #ddd;
   cursor: pointer;
 }
 
@@ -21,4 +21,15 @@
   position: relative;
   margin: auto;
   left: -75px;
+
+  a.active-route {
+    color: #2f55d4;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 991px) {
+  .routes-container {
+    left: auto;
+  }
 }

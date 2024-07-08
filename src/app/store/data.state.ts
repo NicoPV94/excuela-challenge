@@ -1,3 +1,5 @@
+//Definir estructura de la data del estado.
+
 export interface DataState {
   loading: boolean;
   data: any;

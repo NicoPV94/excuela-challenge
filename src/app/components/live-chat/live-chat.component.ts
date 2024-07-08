@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import {
   ChatClientService,
@@ -16,6 +16,8 @@ import {
   styleUrl: './live-chat.component.scss'
 })
 export class LiveChatComponent implements OnInit {
+  @ViewChild('channelList') channelList?: ElementRef;
+
   constructor(
     private chatService: ChatClientService,
     private channelService: ChannelService,
@@ -44,5 +46,9 @@ export class LiveChatComponent implements OnInit {
       type: 'messaging',
       id: { $eq: 'excuela-conocimiento' },
     });
+  }
+
+  ngAfterViewInit(): void {
+    console.log(this.channelList?.nativeElement);
   }
 }

@@ -1,7 +1,8 @@
-@use "stream-chat-angular/src/assets/styles/v2/scss/variables" with ( $assetsPath: "../node_modules/stream-chat-angular/src/assets/styles/v2/assets");
+@use "stream-chat-angular/src/assets/styles/v2/scss/variables" with ($assetsPath: "../node_modules/stream-chat-angular/src/assets/styles/v2/assets");
 @import "stream-chat-angular/src/assets/styles/v2/scss/index.scss";
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -44,18 +45,36 @@ body {
   font-family: Open Sans, sans-serif;
 }
 
-/* Reset list styles (remove default bullets, etc.) */
 ol,
 ul {
   list-style: none;
 }
 
-/* Reset anchor link styles */
 a {
   text-decoration: none;
   color: inherit;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #161c2d!important;
+  font-weight: 700!important;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+
+  .page-title {
+    border-bottom: solid 1px #CCC;
+    padding: 10px;
+  }
+}
+
+
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
-

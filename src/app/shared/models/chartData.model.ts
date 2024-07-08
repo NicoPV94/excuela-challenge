@@ -1,3 +1,4 @@
+//Modelo de la data a guardar en Store.
 export interface ChartData {
   bar: {
     label: string;
