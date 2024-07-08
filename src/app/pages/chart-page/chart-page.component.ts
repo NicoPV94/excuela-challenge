@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } 
 import { ChartComponent } from '../../components/chart/chart.component';
 import { ChartConfiguration, ChartType, ChartOptions } from 'chart.js';
 import { Subscription } from 'rxjs';
+import { ColorService } from '../../shared/services/color.service';
 
 const DATA = [
   { "name": "Angular", "categoy": "web", "value": 290, "id": 1 },
@@ -58,7 +59,7 @@ export class ChartPageComponent implements OnInit, OnDestroy {
   sampleChartData: ChartConfiguration['data'] = {labels: [], datasets: []};
   subs: Subscription = new Subscription();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private colorService: ColorService) {
     this.chartTypeForm = this.fb.group({
       selectedChartType: ['bar', Validators.required]
     });
@@ -71,8 +72,8 @@ export class ChartPageComponent implements OnInit, OnDestroy {
         {
           label: 'Total de minutos vistos',
           data: DATA.map((e) => e.value),
-          backgroundColor: this.getRandomColors(DATA.length, 0.4),
-          borderColor: this.getBorderColors(),
+          backgroundColor: this.colorService.getRandomColors(DATA.length, 0.4),
+          borderColor: this.colorService.getBorderColors(),
           borderWidth: 1,
         },
       ]
@@ -86,49 +87,13 @@ export class ChartPageComponent implements OnInit, OnDestroy {
             {
               label: 'Total de minutos vistos',
               data: DATA.map((e) => e.value),
-              backgroundColor: this.getRandomColors(DATA.length, 0.4),
+              backgroundColor: this.colorService.getRandomColors(DATA.length, 0.4),
               borderWidth: 1,
             },
           ]
         }
       }
     }));
-  }
-
-  getRandomColors(numberOfColors: number, opacity: number = 1): string[] {
-    const colorsArray = [];
-    for (let i = 0; i < numberOfColors; i++) {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var e = 0; e < 6; e++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      this.borderColors.push(color);
-      colorsArray.push(`rgba(${parseInt(color.substring(1, 3), 16)}, ${parseInt(color.substring(3, 5), 16)}, ${parseInt(color.substring(5, 7), 16)}, ${opacity})`);
-    }
-    return colorsArray;
-  }
-
-  getBorderColors(): string[] {
-    return this.borderColors;
-  }
-
-  addOpacityToHexColors(colors: string[], opacity: number = 1): string[] {
-    return colors.map(color => {
-      // Check if the provided color is a valid hex code (6 characters)
-      if (color.length !== 6 || !color.match(/#[0-9A-Fa-f]{6}/)) {
-        console.warn(`Invalid hex color code: ${color}. Skipping...`);
-        return color; // Return the original color if invalid
-      }
-
-      // Convert hex code to RGB values
-      const r = parseInt(color.substring(1, 3), 16);
-      const g = parseInt(color.substring(3, 5), 16);
-      const b = parseInt(color.substring(5, 7), 16);
-
-      // Create rgba color string with the provided opacity
-      return `rgba(${r}, ${g}, ${b}, ${opacity})`;
-    });
   }
 
   ngOnDestroy(): void {

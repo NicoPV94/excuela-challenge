@@ -1,0 +1,173 @@
+{
+  "bar": [
+    {
+      "label": "Total de Minutos Vistos",
+      "data": [
+        {
+          "name": "Angular",
+          "category": "web",
+          "videoMinutes": 290,
+          "id": 1
+        },
+        {
+          "name": "React",
+          "category": "web",
+          "videoMinutes": 450,
+          "id": 2
+        },
+        {
+          "name": "Vue",
+          "category": "web",
+          "videoMinutes": 380,
+          "id": 3
+        },
+        {
+          "name": "jQuery",
+          "category": "web",
+          "videoMinutes": 400,
+          "id": 4
+        },
+        {
+          "name": "Django",
+          "category": "web",
+          "videoMinutes": 300,
+          "id": 5
+        },
+        {
+          "name": "Ruby",
+          "category": "web",
+          "videoMinutes": 775,
+          "id": 6
+        },
+        {
+          "name": "Gatsby",
+          "category": "web",
+          "videoMinutes": 450,
+          "id": 7
+        },
+        {
+          "name": "Anatomía",
+          "category": "ciencia",
+          "videoMinutes": 85,
+          "id": 8
+        },
+        {
+          "name": "Meteorología",
+          "category": "ciencia",
+          "videoMinutes": 420,
+          "id": 9
+        },
+        {
+          "name": "Física",
+          "category": "web",
+          "videoMinutes": 180,
+          "id": 10
+        },
+        {
+          "name": "Medicina de Deportes",
+          "category": "salud",
+          "videoMinutes": 286,
+          "id": 11
+        },
+        {
+          "name": "Aviation",
+          "category": "mecanica",
+          "videoMinutes": 267,
+          "id": 12
+        },
+        {
+          "name": "Auto Repair",
+          "category": "mecanica",
+          "videoMinutes": 232,
+          "id": 13
+        },
+        {
+          "name": "Chemistry",
+          "category": "ciencia",
+          "videoMinutes": 251,
+          "id": 14
+        },
+        {
+          "name": "Industrial",
+          "category": "mecanica",
+          "videoMinutes": 290,
+          "id": 15
+        },
+        {
+          "name": "Pool Maintenance",
+          "category": "mecanica",
+          "videoMinutes": 230,
+          "id": 16
+        },
+        {
+          "name": "Ortopedia",
+          "category": "salud",
+          "videoMinutes": 367,
+          "id": 17
+        },
+        {
+          "name": "Medicina",
+          "category": "salud",
+          "videoMinutes": 325,
+          "id": 18
+        },
+        {
+          "name": "Radiología",
+          "category": "salud",
+          "videoMinutes": 300,
+          "id": 19
+        },
+        {
+          "name": "Botánica",
+          "category": "ciencia",
+          "videoMinutes": 775,
+          "id": 20
+        },
+        {
+          "name": "Horticultua",
+          "category": "ciencia",
+          "videoMinutes": 450,
+          "id": 21
+        }
+      ]
+    }
+  ],
+  "pie": [
+    {
+      "data": [
+        30,
+        55,
+        15
+      ],
+      "label": "Categorías de Usuario"
+    },
+    {
+      "data": [
+        40,
+        30,
+        20,
+        10
+      ],
+      "label": "Interacción de Usuario"
+    }
+  ],
+  "line": [
+    {
+      "data": [
+        { "month": "Enero", "userCount": 1000 },
+        { "month": "Febrero", "userCount": 1200 },
+        { "month": "Marzo", "userCount": 1500 },
+        { "month": "Abril", "userCount": 1800 },
+        { "month": "Mayo", "userCount": 2000 },
+        { "month": "Junio", "userCount": 2200 },
+        { "month": "Julio", "userCount": 2100 },
+        { "month": "Agosto", "userCount": 1900 },
+        { "month": "Septiembre", "userCount": 1700 },
+        { "month": "Octubre", "userCount": 1500 },
+        { "month": "Noviembre", "userCount": 1300 },
+        { "month": "Diciembre", "userCount": 1100 }
+      ],
+      "label": "Usuarios Activos Mensuales"
+    }
+  ]
+}
