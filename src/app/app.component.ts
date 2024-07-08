@@ -4,13 +4,20 @@ import { NavbarComponent } from "./shared/components/navbar/navbar.component";
 import { Store, select } from '@ngrx/store';
 import * as DataActions from './store/data.actions';
 import { Observable, Subscription } from 'rxjs';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet, NavbarComponent]
+    imports: [RouterOutlet, NavbarComponent, TranslateModule]
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Excuela Challenge';
@@ -19,10 +26,24 @@ export class AppComponent implements OnInit, OnDestroy {
   error$?: Observable<any>;
   subs: Subscription = new Subscription();
   isLoading: boolean = true;
+  availableLanguages: {id: string, label: string}[] = [{id: 'en', label: 'English'}, {id: 'es', label: 'Español'}];
+  selectedLanguage: string = 'es';
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private translate: TranslateService) {
+    //Inicializar servicio detraducción y seleccionar lenguaje por defecto
+    this.translate.addLangs(this.availableLanguages.map(lang => lang.id));
+    this.translate.setDefaultLang('es');
+
+    //Revisar el lenguaje del explorador en uso, si coincide con los lenguajes registrados, utilizar el
+    //lenguaje del explorador, sino, caer en español como lenguaje por defecto.
+    const browserLang = this.translate.getBrowserLang();
+    this.selectedLanguage = browserLang?.match(/en|es/) ? browserLang : 'es';
+    this.translate.use(this.selectedLanguage);
+  }
 
   ngOnInit(): void {
+
+
     //Cargar data del archivo JSON
     this.store.dispatch(DataActions.loadData());
 
@@ -35,7 +56,12 @@ export class AppComponent implements OnInit, OnDestroy {
     //propiedad "subs" la cual es una subscripción también y en OnDestroy se utiliza para
     //desubscribirse a todas las subscripciones que fueron añadidas.
     this.subs.add(this.loading$.subscribe({next: (res) => this.isLoading = res}));
-    this.subs.add(this.error$.subscribe({next: (res) => alert(res)}));
+    //this.subs.add(this.error$.subscribe({next: (res) => alert(res)}));
+  }
+
+  changeLanguage(lang: string): void {
+    this.selectedLanguage = lang;
+    this.translate.use(lang);
   }
 
   ngOnDestroy(): void {

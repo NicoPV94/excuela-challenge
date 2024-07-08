@@ -1,7 +1,7 @@
 <div class="mt-3">
   <div class="title-container mb-4">
-    <h3 class="page-title">Reproductor de Video Personalizado</h3>
+    <h3 class="page-title">{{'vid_player_page.page_title' | translate}}</h3>
   </div>
-  <app-video-player videoTitle="Cómo Hacer un Sándwich de Desayuno" [videoSources]="videoSources" [subtitleSources]="subtitles">
+  <app-video-player [videoTitle]="videoTitle" [videoSources]="videoSources" [subtitleSources]="subtitles">
   </app-video-player>
 </div>

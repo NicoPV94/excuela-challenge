@@ -1,14 +1,14 @@
 <div class="title-container my-4">
-  <h3 class="page-title">Gráficos Personalizables</h3>
+  <h3 class="page-title">{{'charts_page.page_title' | translate}}</h3>
 </div>
 <div class="chart-container mx-auto px-4">
   <form [formGroup]="chartTypeForm">
     <div class="mb-3 form-group">
-      <label for="selectedChartType">Tipo de Gráfico:</label>
+      <label class="mb-1" for="selectedChartType">{{'charts_page.chart_type' | translate}}:</label>
       <select id="selectedChartType" formControlName="selectedChartType" class="form-select">
-        <option value="bar">Barra</option>
-        <option value="line">Línea</option>
-        <option value="pie">Circular</option>
+        <option value="bar">{{'charts_page.bar_chart' | translate}}</option>
+        <option value="line">{{'charts_page.line_chart' | translate}}</option>
+        <option value="pie">{{'charts_page.pie_chart' | translate}}</option>
       </select>
     </div>
     <!-- <div class="mb-3 form-group">

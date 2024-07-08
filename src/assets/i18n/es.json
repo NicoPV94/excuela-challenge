@@ -1,0 +1,18 @@
+{
+  "navbar": {
+    "nav_charts": "Gráficos",
+    "nav_support": "Soporte",
+    "nav_vid_player": "Reproductor de Video"
+  },
+  "charts_page": {
+    "page_title": "Gráficos Personalizables",
+    "chart_type": "Tipo de Gráfico",
+    "bar_chart": "Barra",
+    "line_chart": "Línea",
+    "pie_chart": "Círculo"
+  },
+  "vid_player_page": {
+    "page_title": "Reproductor de Video Personalizado",
+    "video_title": "Cómo Hacer un Sándwich de Desayuno"
+  }
+}

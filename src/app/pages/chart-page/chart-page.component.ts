@@ -6,11 +6,12 @@ import { Subscription } from 'rxjs';
 import { ColorService } from '../../shared/services/color.service';
 import { Store, select } from '@ngrx/store';
 import { selectDataState } from '../../store/data.selectors';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-chart-page',
   standalone: true,
-  imports: [ChartComponent, ReactiveFormsModule],
+  imports: [ChartComponent, ReactiveFormsModule, TranslateModule],
   templateUrl: './chart-page.component.html',
   styleUrl: './chart-page.component.scss'
 })

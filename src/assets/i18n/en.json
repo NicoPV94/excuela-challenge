@@ -1,0 +1,18 @@
+{
+  "navbar": {
+    "nav_charts": "Charts",
+    "nav_support": "Support",
+    "nav_vid_player": "Video Player"
+  },
+  "charts_page": {
+    "page_title": "Customizable Charts",
+    "chart_type": "Chart Type",
+    "bar_chart": "Bar",
+    "line_chart": "Line",
+    "pie_chart": "Pie"
+  },
+  "vid_player_page": {
+    "page_title": "Custom Video Player",
+    "video_title": "How to Make a Breakfast Sandwich"
+  }
+}

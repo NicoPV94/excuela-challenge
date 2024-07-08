@@ -1,4 +1,7 @@
-<app-navbar></app-navbar>
+<app-navbar
+  [availableLanguages]="availableLanguages"
+  [selectedLanguage]="selectedLanguage"
+  (languageSelected)="changeLanguage($event)"></app-navbar>
 @if(isLoading) {
   <div class="d-flex justify-content-center align-items-center h-100">
     <div class="spinner-border text-primary" style="width: 8rem; height: 8rem;" role="status">
