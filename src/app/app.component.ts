@@ -7,17 +7,19 @@ import { Observable, Subscription } from 'rxjs';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { StreamI18nService } from 'stream-chat-angular';
+import { spanishTranslation } from '../assets/i18n/es';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
-    imports: [RouterOutlet, NavbarComponent, TranslateModule]
+  selector: 'app-root',
+  standalone: true,
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+  imports: [RouterOutlet, NavbarComponent, TranslateModule]
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Excuela Challenge';
@@ -26,11 +28,11 @@ export class AppComponent implements OnInit, OnDestroy {
   error$?: Observable<any>;
   subs: Subscription = new Subscription();
   isLoading: boolean = true;
-  availableLanguages: {id: string, label: string}[] = [{id: 'en', label: 'English'}, {id: 'es', label: 'Español'}];
+  availableLanguages: { id: string, label: string }[] = [{ id: 'en', label: 'English' }, { id: 'es', label: 'Español' }];
   selectedLanguage: string = 'es';
 
-  constructor(private store: Store, private translate: TranslateService) {
-    //Inicializar servicio detraducción y seleccionar lenguaje por defecto
+  constructor(private store: Store, private translate: TranslateService, private streamI18nService: StreamI18nService) {
+    //Inicializar servicio de traducción y seleccionar lenguaje por defecto
     this.translate.addLangs(this.availableLanguages.map(lang => lang.id));
     this.translate.setDefaultLang('es');
 
@@ -39,6 +41,13 @@ export class AppComponent implements OnInit, OnDestroy {
     const browserLang = this.translate.getBrowserLang();
     this.selectedLanguage = browserLang?.match(/en|es/) ? browserLang : 'es';
     this.translate.use(this.selectedLanguage);
+
+    //Inicializar la traducción de Stream Chat
+    if (this.selectedLanguage === 'es') {
+      this.streamI18nService.setTranslation(this.selectedLanguage, spanishTranslation);
+    } else {
+      this.streamI18nService.setTranslation(this.selectedLanguage);
+    }
   }
 
   ngOnInit(): void {
@@ -55,13 +64,18 @@ export class AppComponent implements OnInit, OnDestroy {
     //o si hay un error durante dicha carga. A la vez se guardan estas subscripciones en la
     //propiedad "subs" la cual es una subscripción también y en OnDestroy se utiliza para
     //desubscribirse a todas las subscripciones que fueron añadidas.
-    this.subs.add(this.loading$.subscribe({next: (res) => this.isLoading = res}));
+    this.subs.add(this.loading$.subscribe({ next: (res) => this.isLoading = res }));
     //this.subs.add(this.error$.subscribe({next: (res) => alert(res)}));
   }
 
   changeLanguage(lang: string): void {
     this.selectedLanguage = lang;
     this.translate.use(lang);
+    if (this.selectedLanguage === 'es') {
+      this.streamI18nService.setTranslation(this.selectedLanguage, spanishTranslation);
+    } else {
+      this.streamI18nService.setTranslation(this.selectedLanguage);
+    }
   }
 
   ngOnDestroy(): void {

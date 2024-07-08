@@ -23,6 +23,8 @@ export class LiveChatComponent implements OnInit {
     private channelService: ChannelService,
     private streamI18nService: StreamI18nService,
   ) {
+    this.streamI18nService.setTranslation('es');
+
     //Esta es información que debería de venir de un backend, pero por motivos demostrativos, ya que este es un challenge de frontend, estar variables se están hardcoding aquí.
     //Idealmente esto estaría implementado con un sistema de autenticación y cada usuario de la aplicación tendría asignado un JWT token generado con el server client de Stream Chat.
     //Esta implementación demo simula un canal al que pueden entrar varios usuarios y enviar/recibir mensajes. Claramente por demostración solo está un usuario dentro del canal.
@@ -30,7 +32,7 @@ export class LiveChatComponent implements OnInit {
     const userId = 'viento-peruano-1';
     const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidmllbnRvLXBlcnVhbm8tMSJ9.tRCT7cbu-QuDb2AjyEEgaX-33U0TJR3RXw5pHGVWNkM';
     this.chatService.init(apiKey, userId, userToken);
-    this.streamI18nService.setTranslation();
+
   }
 
   async ngOnInit() {
@@ -41,7 +43,7 @@ export class LiveChatComponent implements OnInit {
     });
     await channel.create();
 
-    //Añado dos miembros de prueba al canal. Junto con el repositorio del proyecto estaré enviando un link a una instancia online del mismo proyecto pero con viento-nica-1 como
+    //Añado dos miembros de prueba al canal. Junto con el repositorio del proyecto estaré enviando un link a una instancia online en firebase del mismo proyecto pero con viento-nica-1 como
     //usuario por defecto para que cuando corran de manera local el proyecto puedan probar el chat en conjunto con el proyecto online.
     await channel.addMembers([{ user_id: "viento-peruano-1", channel_role: "channel_moderator" }, { user_id: "viento-nica-1", channel_role: "channel_moderator" }]);
 
