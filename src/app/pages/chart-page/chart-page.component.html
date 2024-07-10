@@ -11,14 +11,6 @@
         <option value="pie">{{'charts_page.pie_chart' | translate}}</option>
       </select>
     </div>
-    <!-- <div class="mb-3 form-group">
-      <label for="selectedChartType">Minutos >=:</label>
-      <select formControlName="selectedChartType" class="form-select">
-        <option value="bar">Bar Chart</option>
-        <option value="line">Line Chart</option>
-        <option value="pie">Pie Chart</option>
-      </select>
-    </div> -->
   </form>
   <app-chart [chartType]="chartType" [chartData]="chartData"></app-chart>
 </div>

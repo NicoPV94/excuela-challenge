@@ -53,8 +53,4 @@ export class LiveChatComponent implements OnInit {
       id: { $eq: 'excuela-conocimiento' },
     });
   }
-
-  ngAfterViewInit(): void {
-    console.log(this.channelList?.nativeElement);
-  }
 }
