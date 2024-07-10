@@ -10,8 +10,6 @@ Ejecuta `ng serve` para un servidor de desarrollo. Navega a `http://localhost:42
 
 Demo: https://excuela-challenge.web.app
 
----
-
 # Instrucciones de Uso
 
 Aquí se detallaran las instrucciones de uso de cada uno de los componentes personalizables.
@@ -27,6 +25,8 @@ El componente de gráficos posee dos inputs:
 
   ### Ejemplo de uso
 
+  Data en componente padre
+  
   ```typescript
     chartType: ChartType = 'bar';
     chartData: ChartConfiguration['data'] = {
@@ -38,11 +38,69 @@ El componente de gráficos posee dos inputs:
       ]
     };
   ```
-  
 
- ```html
+  Invocacion del componente
+
+  ```html
     <app-chart [chartType]="chartType" [chartData]="chartData"></app-chart>
   ```
+
+## Live Chat Component
+
+Este componente hace uso del servicio Stream Chat para implementar un chat con: canales, respuestas, hilos, envío de archivos, entre otras funcionalidades básicas de una aplicación de chat contemporánea.
+Nota: Para más información sobre todas las poisbles opciones de configuración de Stream Chat, por favor visitar su documentación oficial [Stream Chat Angular Docs](https://getstream.io/chat/docs/sdk/angular/).
+
+Para que el componente funcione hay que importar el `chatService` poporcionado por Stream Chat y utilizarlo en el constructor del componente para inicializar el chat. Se corre la función `init` 
+y se le pasan como argumentos el API Key (brindado por Stream Chat cuando se crea una cuenta), userId (generado por nosotros) y el userToken (token JWT generado por el client service de Stream Chat).
+
+```typescript
+  @Component({
+    selector: 'app-live-chat',
+    standalone: true,
+    imports: [TranslateModule, StreamAutocompleteTextareaModule, StreamChatModule],
+    templateUrl: './live-chat.component.html',
+    styleUrl: './live-chat.component.scss'
+  })
+  export class LiveChatComponent implements OnInit {
+    @ViewChild('channelList') channelList?: ElementRef;
+
+  constructor(
+    private chatService: ChatClientService,
+    private channelService: ChannelService
+  ) {
+    //Esta es información que debería de venir de un backend, pero por motivos demostrativos estas variables se están hardcoding aquí.
+    const apiKey = 'n4zhq2zcd4fu';
+    const userId = 'viento-peruano-1';
+    const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidmllbnRvLXBlcnVhbm8tMSJ9.tRCT7cbu-QuDb2AjyEEgaX-33U0TJR3RXw5pHGVWNkM';
+    this.chatService.init(apiKey, userId, userToken);
+  }
+```
+
+Luego se crea un canal accediendo a la función `channel` dentro de `clientService.chatClient` y se pasan como argumentos el tipo de canal (en este caso "messaging"), un ID (generado por nosotros) y un objeto
+de configuración (referirse a la documentación de Stream Chat para ver posibles opciones de configuración). Se pueden añadir miembros con la referencia creada por la función ejecutada anteriormente, al igual
+que filtrar canales.
+
+ ```typescript
+    async ngOnInit() {
+      //Aquí se crea el canal/conversación
+      const channel = this.chatService.chatClient.channel('messaging', 'excuela-conocimiento', {
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png',
+        name: 'Excuela - Conocimiento Compartido',
+      });
+      await channel.create();
+  
+      //Ejemplo de cómo añadir miembros
+      await channel.addMembers([{ user_id: "viento-peruano-1", channel_role: "channel_moderator" }, { user_id: "viento-nica-1", channel_role: "channel_moderator" }]);
+  
+      //Se añade condición para filtrar canales al inicializar el channelService, en este caso estamos filtrando por el ID que le dimos al canal cuando fue creado 'conocimiento-excuela'.
+      this.channelService.init({
+        type: 'messaging',
+        id: { $eq: 'excuela-conocimiento' },
+      });
+    }
+  }
+```
+
 
 
 
