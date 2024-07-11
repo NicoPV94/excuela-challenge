@@ -3,7 +3,6 @@ import { TranslateModule } from '@ngx-translate/core';
 import {
   ChatClientService,
   ChannelService,
-  StreamI18nService,
   StreamAutocompleteTextareaModule,
   StreamChatModule,
 } from 'stream-chat-angular';
@@ -20,12 +19,9 @@ export class LiveChatComponent implements OnInit {
 
   constructor(
     private chatService: ChatClientService,
-    private channelService: ChannelService,
-    private streamI18nService: StreamI18nService,
+    private channelService: ChannelService
   ) {
-    this.streamI18nService.setTranslation('es');
-
-    //Esta es información que debería de venir de un backend, pero por motivos demostrativos, ya que este es un challenge de frontend, estar variables se están hardcoding aquí.
+    //Esta es información que debería de venir de un backend, pero por motivos demostrativos, ya que este es un challenge de frontend, estas variables se están hardcoding aquí.
     //Idealmente esto estaría implementado con un sistema de autenticación y cada usuario de la aplicación tendría asignado un JWT token generado con el server client de Stream Chat.
     //Esta implementación demo simula un canal al que pueden entrar varios usuarios y enviar/recibir mensajes. Claramente por demostración solo está un usuario dentro del canal.
     const apiKey = 'n4zhq2zcd4fu';

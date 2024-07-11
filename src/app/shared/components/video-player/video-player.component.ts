@@ -2,18 +2,8 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, HostListener } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SettingsMenuComponent } from './settings-menu/settings-menu.component';
-
-interface VideoSource {
-  label: string;
-  src: string;
-}
-
-interface SubtitleSource {
-  label: string;
-  src: string;
-  srclang: string;
-  default: boolean;
-}
+import { VideoSource } from '../../models/videoSource.model';
+import { SubtitleSource } from '../../models/subtitleSource.model';
 
 @Component({
   selector: 'app-video-player',

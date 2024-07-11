@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { VideoPlayerComponent } from "../../shared/components/video-player/video-player.component";
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { VideoSource } from '../../shared/models/videoSource.model';
+import { SubtitleSource } from '../../shared/models/subtitleSource.model';
 
 @Component({
   selector: 'app-video-player-page',
@@ -14,12 +16,12 @@ export class VideoPlayerPageComponent implements OnInit, OnDestroy {
 
   videoTitle: string = 'Cómo Hacer un Sándwich de Desayuno';
 
-  videoSources = [
+  videoSources: VideoSource[] = [
     { label: '360p', src: 'assets/video/sample-video(360p).mp4' },
     { label: '480p', src: 'assets/video/sample-video(480p).mp4' }
   ];
 
-  subtitles = [
+  subtitles: SubtitleSource[] = [
     {label: 'English', src: 'assets/video/Subtitles-[English].vtt', srclang: 'en', default: false},
     {label: 'Español', src: 'assets/video/Subtitles-[Spanish].vtt', srclang: 'es', default: false}
   ];
