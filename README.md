@@ -69,9 +69,9 @@ y se le pasan como argumentos el API Key (brindado por Stream Chat cuando se cre
     private channelService: ChannelService
   ) {
     //Esta es información que debería de venir de un backend, pero por motivos demostrativos estas variables se están hardcoding aquí.
-    const apiKey = 'n4zhq2zcd4fu';
-    const userId = 'viento-peruano-1';
-    const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidmllbnRvLXBlcnVhbm8tMSJ9.tRCT7cbu-QuDb2AjyEEgaX-33U0TJR3RXw5pHGVWNkM';
+    const apiKey = '[your-api-key]';
+    const userId = '[userId]';
+    const userToken = '[JWT Token]';
     this.chatService.init(apiKey, userId, userToken);
   }
 ```
@@ -83,14 +83,14 @@ que filtrar canales.
  ```typescript
     async ngOnInit() {
       //Aquí se crea el canal/conversación
-      const channel = this.chatService.chatClient.channel('messaging', 'excuela-conocimiento', {
+      const channel = this.chatService.chatClient.channel('messaging', '[channel-id]', {
         image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png',
         name: 'Excuela - Conocimiento Compartido',
       });
       await channel.create();
   
       //Ejemplo de cómo añadir miembros
-      await channel.addMembers([{ user_id: "viento-peruano-1", channel_role: "channel_moderator" }, { user_id: "viento-nica-1", channel_role: "channel_moderator" }]);
+      await channel.addMembers([{ user_id: "[userId]", channel_role: "channel_moderator" }, { user_id: "[userId]", channel_role: "channel_moderator" }]);
   
       //Se añade condición para filtrar canales al inicializar el channelService, en este caso estamos filtrando por el ID que le dimos al canal cuando fue creado 'conocimiento-excuela'.
       this.channelService.init({
