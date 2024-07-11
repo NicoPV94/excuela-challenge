@@ -134,6 +134,45 @@ Data en componente padre
     <app-video-player [videoTitle]="videoTitle" [videoSources]="videoSources" [subtitleSources]="subtitles"></app-video-player>
   ```
 
+## Traducciones
+
+En el constructor del AppComponent se proveen el `TranslateService` y `StreamI18nService` que sirven para manejar las traducciones y agregarlas a Stream Chat, respectivamente.  
+
+Para ello se utiliza el `TranslateService` para registrar los lenguajes a utilizar vía la función `addLangs` que acepta un arreglo de strings que representan la abreviatura
+del lenguaje a registrar.  
+
+En este caso también se verifica cuál es el lenguaje del explorador que estamos utilizando y si es alguno de los que tenemos registrados (en|es), se utiliza ese lenguaje, 
+sinó, se utiliza `es` por defecto.  
+
+Por último se utiliza el `StreamI18nService` para agregar las traducciones de español a Stream Chat ya que el servicio solo soporta. La traducción a español viene de un archivo guardado en la carpeta de Assets.
+
+```typescript
+  import { StreamI18nService } from 'stream-chat-angular';
+  import { spanishTranslation } from '../assets/i18n/es';
+  import { TranslateService } from '@ngx-translate/core';
+
+  availableLanguages: { id: string, label: string }[] = [{ id: 'en', label: 'English' }, { id: 'es', label: 'Español' }];
+
+  constructor(private translate: TranslateService, private streamI18nService: StreamI18nService) {
+    //Inicializar servicio de traducción y seleccionar lenguaje por defecto
+    this.translate.addLangs(this.availableLanguages.map(lang => lang.id));
+    this.translate.setDefaultLang('es');
+
+    //Revisar el lenguaje del explorador en uso, si coincide con los lenguajes registrados, utilizar el
+    //lenguaje del explorador, sino, caer en español como lenguaje por defecto.
+    const browserLang = this.translate.getBrowserLang();
+    this.selectedLanguage = browserLang?.match(/en|es/) ? browserLang : 'es';
+    this.translate.use(this.selectedLanguage);
+
+    //Inicializar la traducción de Stream Chat
+    if (this.selectedLanguage === 'es') {
+      this.streamI18nService.setTranslation(this.selectedLanguage, spanishTranslation);
+    } else {
+      this.streamI18nService.setTranslation(this.selectedLanguage);
+    }
+  }
+```
+
 
 
 
