@@ -16,12 +16,12 @@ Aquí se detallaran las instrucciones de uso de cada uno de los componentes pers
 
 ## Chart Component
 
-El componente utiliza la librería `ng2-charts` para crear los gráficos, que a su vez utiliza `chart.js` para renderizarlos. 
+El componente utiliza la librería `ng2-charts` para crear los gráficos, que a su vez utiliza `chart.js` para renderizarlos.  
 **Nota:** Para más información de todas las posibles opciones por favor ver la documentación oficial de [ng2-charts](https://github.com/valor-software/ng2-charts) y [chart.js](http://www.chartjs.org/docs).  
 
-El componente de gráficos posee dos inputs:
-  `chartType`: Indica el tipo de gráfico que se desea utilizar. Es un string que contiene como valor el nombre del gráfico, por ejemplo `pie` para un gráfico circular.
-  `chartData`: Un objeto que contiene la configuración y data que utilizará el gráfico para renderizar.
+El componente de gráficos posee dos inputs:  
+  `chartType`: Indica el tipo de gráfico que se desea utilizar. Es un string que contiene como valor el nombre del gráfico, por ejemplo `pie` para un gráfico circular.  
+  `chartData`: Un objeto que contiene la configuración y data que utilizará el gráfico para renderizar.  
 
   ### Ejemplo de uso
 
@@ -48,10 +48,10 @@ El componente de gráficos posee dos inputs:
 ## Live Chat Component
 
 Este componente hace uso del servicio Stream Chat para implementar un chat con: canales, respuestas, hilos, envío de archivos, entre otras funcionalidades básicas de una aplicación de chat contemporánea.  
-**Nota:** Para más información sobre todas las poisbles opciones de configuración de Stream Chat, por favor visitar su documentación oficial [Stream Chat Angular Docs](https://getstream.io/chat/docs/sdk/angular/).
+**Nota:** Para más información sobre todas las poisbles opciones de configuración de Stream Chat, por favor visitar su documentación oficial [Stream Chat Angular Docs](https://getstream.io/chat/docs/sdk/angular/).  
 
 Para que el componente funcione hay que importar el `chatService` poporcionado por Stream Chat y utilizarlo en el constructor del componente para inicializar el chat. Se corre la función `init` 
-y se le pasan como argumentos el API Key (brindado por Stream Chat cuando se crea una cuenta), userId (generado por nosotros) y el userToken (token JWT generado por el client service de Stream Chat).
+y se le pasan como argumentos el API Key (brindado por Stream Chat cuando se crea una cuenta), userId (generado por nosotros) y el userToken (token JWT generado por el client service de Stream Chat).  
 
 ```typescript
   @Component({
