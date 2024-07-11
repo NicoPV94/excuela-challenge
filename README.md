@@ -103,14 +103,14 @@ que filtrar canales.
 
 ## Video Player Component
 
-El VideoPlayerComponent es un reproductor de video con estílos y controles personalizados.
+El VideoPlayerComponent es un reproductor de video con estílos y controles personalizados.    
 
-Este componente posee tres inputs:
-  `videoTitle`: Un string que indica el título del video. Es una propiedad opcional; si provee, se renderiza el área del título, de lo contrario, no.
+Este componente posee tres inputs:  
+  `videoTitle`: Un string que indica el título del video. Es una propiedad opcional; si provee, se renderiza el área del título, de lo contrario, no.  
   `videoSources`: Un arreglo de objetos de tipo VideoSource (modelo creado en el proyecto) en el cual se proveen los orígenes del video a mostrar, en otras palabras,
-  las distintas calidades de video a mostrar.
+  las distintas calidades de video a mostrar.  
   `subtitleSources`: Un arreglo de objetos de tipo SubtitleSource (modelo creado en el proyecto) en el cual se proveen los orígenes de los subtítulos a mostrar
-  en el video.
+  en el video.  
 
 Data en componente padre
   
