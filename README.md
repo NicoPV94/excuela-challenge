@@ -17,7 +17,7 @@ Aquí se detallaran las instrucciones de uso de cada uno de los componentes pers
 ## Chart Component
 
 El componente utiliza la librería `ng2-charts` para crear los gráficos, que a su vez utiliza `chart.js` para renderizarlos. 
-Nota: Para más información de todas las posibles opciones por favor ver la documentación oficial de [ng2-charts](https://github.com/valor-software/ng2-charts) y [chart.js](http://www.chartjs.org/docs).
+**Nota:** Para más información de todas las posibles opciones por favor ver la documentación oficial de [ng2-charts](https://github.com/valor-software/ng2-charts) y [chart.js](http://www.chartjs.org/docs).  
 
 El componente de gráficos posee dos inputs:
   `chartType`: Indica el tipo de gráfico que se desea utilizar. Es un string que contiene como valor el nombre del gráfico, por ejemplo `pie` para un gráfico circular.
@@ -39,7 +39,7 @@ El componente de gráficos posee dos inputs:
     };
   ```
 
-  Invocacion del componente
+  Invocación del componente
 
   ```html
     <app-chart [chartType]="chartType" [chartData]="chartData"></app-chart>
@@ -47,8 +47,8 @@ El componente de gráficos posee dos inputs:
 
 ## Live Chat Component
 
-Este componente hace uso del servicio Stream Chat para implementar un chat con: canales, respuestas, hilos, envío de archivos, entre otras funcionalidades básicas de una aplicación de chat contemporánea.
-Nota: Para más información sobre todas las poisbles opciones de configuración de Stream Chat, por favor visitar su documentación oficial [Stream Chat Angular Docs](https://getstream.io/chat/docs/sdk/angular/).
+Este componente hace uso del servicio Stream Chat para implementar un chat con: canales, respuestas, hilos, envío de archivos, entre otras funcionalidades básicas de una aplicación de chat contemporánea.  
+**Nota:** Para más información sobre todas las poisbles opciones de configuración de Stream Chat, por favor visitar su documentación oficial [Stream Chat Angular Docs](https://getstream.io/chat/docs/sdk/angular/).
 
 Para que el componente funcione hay que importar el `chatService` poporcionado por Stream Chat y utilizarlo en el constructor del componente para inicializar el chat. Se corre la función `init` 
 y se le pasan como argumentos el API Key (brindado por Stream Chat cuando se crea una cuenta), userId (generado por nosotros) y el userToken (token JWT generado por el client service de Stream Chat).
@@ -100,6 +100,41 @@ que filtrar canales.
     }
   }
 ```
+
+## Video Player Component
+
+El VideoPlayerComponent es un reproductor de video con estílos y controles personalizados.
+
+Este componente posee tres inputs:
+  `videoTitle`: Un string que indica el título del video. Es una propiedad opcional; si provee, se renderiza el área del título, de lo contrario, no.
+  `videoSources`: Un arreglo de objetos de tipo VideoSource (modelo creado en el proyecto) en el cual se proveen los orígenes del video a mostrar, en otras palabras,
+  las distintas calidades de video a mostrar.
+  `subtitleSources`: Un arreglo de objetos de tipo SubtitleSource (modelo creado en el proyecto) en el cual se proveen los orígenes de los subtítulos a mostrar
+  en el video.
+
+Data en componente padre
+  
+  ```typescript
+    videoTitle: string = 'Cómo Hacer un Sándwich de Desayuno';
+
+    videoSources: VideoSource[] = [
+      { label: '360p', src: 'assets/video/sample-video(360p).mp4' },
+      { label: '480p', src: 'assets/video/sample-video(480p).mp4' }
+    ];
+  
+    subtitles: SubtitleSource[] = [
+      {label: 'English', src: 'assets/video/Subtitles-[English].vtt', srclang: 'en', default: false},
+      {label: 'Español', src: 'assets/video/Subtitles-[Spanish].vtt', srclang: 'es', default: false}
+    ];
+  ```
+
+  Invocación del componente
+
+  ```html
+    <app-video-player [videoTitle]="videoTitle" [videoSources]="videoSources" [subtitleSources]="subtitles"></app-video-player>
+  ```
+
+
 
 
 
