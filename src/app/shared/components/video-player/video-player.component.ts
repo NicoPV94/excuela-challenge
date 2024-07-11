@@ -14,7 +14,7 @@ import { SubtitleSource } from '../../models/subtitleSource.model';
 })
 export class VideoPlayerComponent implements OnInit, AfterViewInit {
   //Inputs
-  @Input() videoTitle: string = 'Sample Video';
+  @Input() videoTitle?: string;
   @Input() videoSources: VideoSource[] = [];
   @Input() subtitleSources: SubtitleSource[] = [];
 
