@@ -19,8 +19,8 @@ Detailed instructions for using each of the customizable components will be prov
 The component uses the `ng2-charts` library to create charts, which in turn uses `chart.js` to render them.  
 **Note:** For more information on all possible options, please refer to the official documentation for [ng2-charts](https://github.com/valor-software/ng2-charts) y [chart.js](http://www.chartjs.org/docs).  
 
-The chart component has two inputs: 
-  `chartType`: Indicates the type of chart to be used. It is a string that contains the name of the chart as its value, for example  `pie` for a pie chart.
+The chart component has two inputs:  
+  `chartType`: Indicates the type of chart to be used. It is a string that contains the name of the chart as its value, for example  `pie` for a pie chart.  
   `chartData`: An object that contains the configuration and data that the chart will use to render.  
 
   ### Usage Example
